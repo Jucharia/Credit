@@ -2,14 +2,14 @@
 public class CreditPaymentService {
     public int calculate(double credit, double term, double rate) {
 
-        double a; // ежемесячная процентная ставка
-        a = rate / 100 / 12;
-        double b = 1 + a;
-        double c = Math.pow(b, term); // возведение числа в квадрате(рост)
-        double d;
-        d = credit * (a + (a / (c - 1)));
-        int result = (int) d;
-        return result;
+        double monthlyRate; // ежемесячная процентная ставка
+        monthlyRate = rate / 100 / 12;
+        double formula = 1 + monthlyRate;
+        double exponentiation = Math.pow(formula, term); // возведение числа в степень, равную количеству месяцев кредита
+        double result;
+        result = credit * (monthlyRate + (monthlyRate / (exponentiation - 1))); // ежемесячный платеж
+        int totalResult = (int) result;
+        return totalResult;
 
     }
 }
